@@ -13,6 +13,25 @@ El objetivo del proyecto es practicar el uso de componentes visuales de
 Bootstrap y el sistema de grid responsivo, sin implementar lógica real de
 carrito de compras ni backend.
 
+## Funcionalidad dinámica (Fetch API)
+
+Los productos ya **no están escritos en el HTML**: se obtienen en tiempo real
+desde una API REST pública mediante `fetch()` + `async/await`, y se
+renderizan dinámicamente dentro del `<div id="contenedor-productos">`.
+
+- **Endpoint:** `https://backservicetest-g8emcvdff0fqe2b8.canadacentral-01.azurewebsites.net/api/producto`
+- Cada producto se recorre con `.forEach()` y se inserta como
+  `col-sm-12 col-md-4 mb-4` (1 por fila en móvil, 3 por fila en
+  pantallas medianas/grandes).
+- Si `producto.enOferta === true`, se muestra el precio de oferta y el
+  precio original tachado (`text-decoration-line-through`), ambos con
+  `parseFloat(...).toFixed(2)`.
+- El botón **"Agregar al carrito"** de cada producto incrementa el
+  contador visual del carrito ubicado en la esquina superior derecha.
+- Manejo de errores con `try/catch`: si la API falla, se muestra un
+  mensaje de alerta (`alert-danger`) en vez de dejar la sección vacía.
+- Mientras se cargan los datos se muestra un `spinner-border` de Bootstrap.
+
 ## Componentes de Bootstrap utilizados
 
 - **Carousel**: carrusel de imágenes en la parte superior de la página, con
@@ -57,6 +76,7 @@ tienda-online/
 
 1. Clonar o descargar este repositorio.
 2. Abrir `index.html` directamente en el navegador (no requiere servidor).
+
 
 ## Publicación
 
